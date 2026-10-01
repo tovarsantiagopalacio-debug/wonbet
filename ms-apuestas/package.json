@@ -1,0 +1,14 @@
+{
+  "name": "ms-apuestas",
+  "version": "1.0.0",
+  "description": "WonBet - Microservicio de Apuestas (verifica JWT y consulta a ms-eventos)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

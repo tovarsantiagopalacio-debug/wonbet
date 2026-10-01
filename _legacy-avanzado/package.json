@@ -1,0 +1,21 @@
+{
+  "name": "wonbet-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WonBet — Plataforma de apuestas deportivas en microservicios",
+  "scripts": {
+    "db:up": "docker compose up -d postgres-usuarios postgres-eventos postgres-apuestas postgres-notificaciones",
+    "db:down": "docker compose down",
+    "db:reset": "docker compose down -v && docker compose up -d postgres-usuarios postgres-eventos postgres-apuestas postgres-notificaciones",
+    "dev:usuarios": "npm run dev --prefix usuarios-service",
+    "dev:eventos": "npm run dev --prefix eventos-service",
+    "dev:apuestas": "npm run dev --prefix apuestas-service",
+    "dev:notificaciones": "npm run dev --prefix notifications-service",
+    "dev:gateway": "npm run dev --prefix gateway",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:all": "concurrently -n usuarios,eventos,apuestas,notif,gateway,frontend -c blue,green,magenta,yellow,cyan,red \"npm:dev:usuarios\" \"npm:dev:eventos\" \"npm:dev:apuestas\" \"npm:dev:notificaciones\" \"npm:dev:gateway\" \"npm:dev:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

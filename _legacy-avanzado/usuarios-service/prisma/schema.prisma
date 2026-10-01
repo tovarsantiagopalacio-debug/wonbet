@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// Roles dentro de la plataforma
+enum Rol {
+  ADMIN
+  USUARIO
+}
+
+/// Tabla de usuarios de la plataforma WonBet
+model Usuario {
+  id         Int      @id @default(autoincrement())
+  nombre     String
+  correo     String   @unique
+  password   String
+  rol        Rol      @default(USUARIO)
+  saldo      Float    @default(0)
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("usuarios")
+}

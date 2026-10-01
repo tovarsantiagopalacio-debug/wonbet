@@ -1,0 +1,22 @@
+# Dependencias
+node_modules/
+
+# Entorno
+.env
+*.env.local
+
+# SQLite (cada microservicio genera la suya al arrancar)
+*.db
+
+# Builds
+dist/
+build/
+
+# Logs
+*.log
+logs/
+
+# Sistema
+.DS_Store
+coverage/
+.nyc_output/

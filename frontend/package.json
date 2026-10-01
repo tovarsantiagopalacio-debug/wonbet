@@ -1,0 +1,10 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WonBet - Frontend simple (HTML/CSS/JS plano, sin build) con servidor estático mínimo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WonBet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎲 WonBet</h1>
+    <div id="sesion-info" class="oculto">
+      <span id="usuario-actual"></span>
+      <button id="btn-logout">Salir</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="aviso-servidor" class="aviso oculto"></div>
+
+    <!-- ================= LOGIN / REGISTRO ================= -->
+    <section id="seccion-auth">
+      <div class="tarjeta">
+        <div class="tabs">
+          <button id="tab-login" class="tab activo">Iniciar sesión</button>
+          <button id="tab-registro" class="tab">Crear cuenta</button>
+        </div>
+
+        <form id="form-login">
+          <label>Correo<input type="email" id="login-correo" required /></label>
+          <label>Contraseña<input type="password" id="login-contraseña" required /></label>
+          <button type="submit">Entrar</button>
+          <p id="login-error" class="error"></p>
+        </form>
+
+        <form id="form-registro" class="oculto">
+          <label>Nombre<input type="text" id="reg-nombre" required /></label>
+          <label>Correo<input type="email" id="reg-correo" required /></label>
+          <label>Contraseña<input type="password" id="reg-contraseña" required minlength="6" /></label>
+          <button type="submit">Registrarme</button>
+          <p id="registro-error" class="error"></p>
+          <p id="registro-ok" class="ok"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================= APP (requiere login) ================= -->
+    <section id="seccion-app" class="oculto">
+      <div class="tarjeta">
+        <h2>Eventos abiertos</h2>
+        <table>
+          <thead>
+            <tr><th>Evento</th><th>Cuota</th><th>Estado</th><th>Monto a apostar</th><th></th></tr>
+          </thead>
+          <tbody id="tabla-eventos"></tbody>
+        </table>
+        <p id="apuesta-error" class="error"></p>
+        <p id="apuesta-ok" class="ok"></p>
+      </div>
+
+      <div class="tarjeta">
+        <h2>Mis apuestas</h2>
+        <table>
+          <thead>
+            <tr><th>Evento</th><th>Monto</th><th>Cuota</th><th>Ganancia potencial</th><th>Fecha</th></tr>
+          </thead>
+          <tbody id="tabla-apuestas"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "wonbet-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WonBet — Apuestas deportivas en microservicios (ejemplo educativo simple)",
+  "scripts": {
+    "start:usuarios": "npm start --prefix ms-usuarios",
+    "start:eventos": "npm start --prefix ms-eventos",
+    "start:apuestas": "npm start --prefix ms-apuestas",
+    "start:gateway": "npm start --prefix gateway",
+    "start:frontend": "node frontend/server.js",
+    "start:all": "concurrently -n usuarios,eventos,apuestas,gateway,frontend -c blue,green,magenta,cyan,red \"npm:start:usuarios\" \"npm:start:eventos\" \"npm:start:apuestas\" \"npm:start:gateway\" \"npm:start:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

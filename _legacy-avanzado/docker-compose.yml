@@ -1,0 +1,98 @@
+# WonBet — Docker Compose
+# Fase 0: solo las 4 bases PostgreSQL. Los servicios se agregan en la Fase 7.
+#
+# Uso:
+#   docker compose up -d                      # levanta PostgreSQL (y servicios en fases finales)
+#   docker compose down                       # detiene todo (sin borrar datos)
+#   docker compose down -v                   # detiene y borra los volúmenes
+
+services:
+  # ------------------------------------------------------------------
+  # PostgreSQL — Base de datos del Servicio de Usuarios
+  # ------------------------------------------------------------------
+  postgres-usuarios:
+    image: postgres:16-alpine
+    container_name: wonbet-pg-usuarios
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: wonbet
+      POSTGRES_PASSWORD: wonbet123
+      POSTGRES_DB: usuarios
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-usuarios:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wonbet -d usuarios"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ------------------------------------------------------------------
+  # PostgreSQL — Base de datos del Servicio de Eventos
+  # ------------------------------------------------------------------
+  postgres-eventos:
+    image: postgres:16-alpine
+    container_name: postgres-pg-eventos
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: wonbet
+      POSTGRES_PASSWORD: wonbet123
+      POSTGRES_DB: eventos
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg-eventos:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wonbet -d eventos"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ------------------------------------------------------------------
+  # PostgreSQL — Base de datos del Servicio de Apuestas
+  # ------------------------------------------------------------------
+  postgres-apuestas:
+    image: postgres:16-alpine
+    container_name: postgres-pg-apuestas
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: wonbet
+      POSTGRES_PASSWORD: wonbet123
+      POSTGRES_DB: apuestas
+    ports:
+      - "5434:5432"
+    volumes:
+      - pg-apuestas:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wonbet -d apuestas"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ------------------------------------------------------------------
+  # PostgreSQL — Base de datos del Servicio de Notificaciones
+  # ------------------------------------------------------------------
+  postgres-notificaciones:
+    image: postgres:16-alpine
+    container_name: postgres-pg-notificaciones
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: wonbet
+      POSTGRES_PASSWORD: wonbet123
+      POSTGRES_DB: notificaciones
+    ports:
+      - "5435:5432"
+    volumes:
+      - pg-notificaciones:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wonbet -d notificaciones"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pg-usuarios:
+  pg-eventos:
+  pg-apuestas:
+  pg-notificaciones:
